@@ -12,14 +12,14 @@ provider "google" {
   zone    = var.zone
 }
 
+#Modules for Network, VMs, and Storage bucket
 module "networks"{
   source  = "./modules/networks"
 }
-
 module "instances"{
   source  = "./modules/instances"
+  vpc_network = module.networks.vpc_network #Enable the vpc to be passed to the instances module
 }
-
 #module "storage"{
 #  source  = "./modules/networks"
 #}
