@@ -1,7 +1,7 @@
 # learn-gcp-terraform
 
 ## Stage 1.  Terraform to create Network and VM
-Set up the environment
+### Set up the environment
 * Log into the console at https://console.cloud.google.com
 * Creat a project, or select the project you'd like to use
 * Open a CloudShell session
@@ -12,7 +12,7 @@ Set up the environment
 * Optionally, click "Open Editor" button to launch the Cloud code editor
 * Edit line 10 to paste in your project ID, replacing <PROJECT_ID>
 
-Initialize Terraform and create base infrastructure
+### Initialize Terraform and create base infrastructure
 * From the learn-gcp-terraform directory, run *terraform init*, you should see **Terraform has been successfully initialized!**
 * Enter *terraform plan* and hit enter.  You may have to click to authorize CloudShell to execute
   * Review the output to take note of what the terraform automation will create 
@@ -24,7 +24,7 @@ Initialize Terraform and create base infrastructure
 * From the left hand Cloud console menu, select *Compute Engine*, and then *VM Instances*
   * Note the VM **terraform-instance** has been created, attached to the  **terraform-network** VPC
 
-Updating Infrastructure with Terraform
+### Updating Infrastructure with Terraform
 * CD into the ~/learn-gcp-terraform directory if you are not still in it
 * Uncomment line 36, enabling the tags of **web** and **dev** to be applied to the VM
 * Run *terraform plan* from cli, and note the addition of tags dev, web as they will be updated on the existing VM intance
@@ -34,7 +34,7 @@ Updating Infrastructure with Terraform
 * Click onto the VM from the Console, scroll down to the **Network tags* section.  Note the dev, web tags are visible on the console
 * You have updated the infrastructure using Terraform!
 
-Destroy the environment
+### Destroy the environment
 * Now that you have a repeatable infrastructure.  You can destroy it.
 * From within the *~/learn-gcp-terraform* folder, type and run *terraform destroy*
 * Note the command output indicating the environment network and VM will be destroyed
