@@ -36,7 +36,7 @@
 
 ### Destroy the environment
 * Now that you have a repeatable infrastructure.  You can destroy it.
-* From within the *~/learn-gcp-terraform* folder, type and run *terraform destroy*
+* From within the *~/learn-gcp-terraform* folder, type and run ```terraform destroy```
 * Note the command output indicating the environment network and VM will be destroyed
-* At the **Enter a value:** prompt, type *yes* and hit enter
+* At the **Enter a value:** prompt, type ```yes``` and hit enter
 * The Network is destroyed first, followed by the VM instance. 
