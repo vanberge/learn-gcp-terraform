@@ -1,16 +1,34 @@
-#Intro File. Simply create a GCP VM in the Default Network
+terraform {
+  required_providers {
+    google = {
+      source = "hashicorp/google"
+    }
+  }
+}
+provider "google" {
+  version = "3.5.0"
+  project = "<PROJECT_ID>"
+  region  = "us-central1"
+  zone    = "us-central1-c"
+}
 
-resource "google_compute_instance" "terraform" {
-  project      = "evb-gcp-terraform"
-  name         = "terraform"
-  machine_type = "n1-standard-1"
-  zone         = "us-central1-a"
+#Create the default VPC network 
+resource "google_compute_network" "vpc_network" {
+  name = "terraform-network"
+}
+
+#Create the VM attached to the network we just created
+resource "google_compute_instance" "vm_instance" {
+  name         = "terraform-instance"
+  machine_type = "f1-micro"
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-9"
     }
   }
   network_interface {
-    network = "default"
+    network = google_compute_network.vpc_network.name
+    access_config {
+    }
   }
 }
