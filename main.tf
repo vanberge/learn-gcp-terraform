@@ -25,6 +25,8 @@ resource "google_compute_instance" "vm_instance" {
     initialize_params {
       image = "debian-cloud/debian-9"
     }
+  #Uncomment if you wish to tag your VM 
+  #tags        = ["web", "dev"]
   }
   network_interface {
     network = google_compute_network.vpc_network.name
