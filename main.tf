@@ -21,5 +21,5 @@ module "instances" {
   vpc_network = module.networks.vpc_network #Enable the vpc to be passed to the instances module
 }
 #module "storage"{
-#  source  = "./modules/networks"
+#  source  = "./modules/storage"
 #}
