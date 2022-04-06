@@ -27,7 +27,7 @@ resource "google_compute_instance" "vm_instance" {
     }
   }
   network_interface {
-    network = google_compute_network.vpc_network.name
+    network = google_compute_network.vpc_network.nmae #this typo is on purpose
     access_config {
       #For External IP address
     }
