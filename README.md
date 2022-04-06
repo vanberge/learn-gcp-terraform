@@ -46,7 +46,7 @@ With our configuration seemingly in order, let's create and apply a plan:
 * Enter ``terraform plan`` and hit enter.  You may have to click to authorize CloudShell to execute
   * Review the output to take note of what the terraform automation will create. It should look like this: 
   ```
-    # google_compute_instance.vm_instance will be created
+  # google_compute_instance.vm_instance will be created
   + resource "google_compute_instance" "vm_instance" {
       + can_ip_forward       = false
       + cpu_platform         = (known after apply)
@@ -87,8 +87,8 @@ With our configuration seemingly in order, let's create and apply a plan:
 ### Updating Existing Infrastructure with Terraform
 * Now we'll update existing infrastrucutre with a modified plan.
 * Navigate to the code editor tab to make a change to ``main.tf``
-* Uncomment line 36 ``tags        = ["web", "dev"]``, enabling the tags of **web** and **dev** to be applied to the VM
-* In your CloudShell into the ``~/learn-gcp-terraform`` directory if you are not still in it
+* Uncomment line 36 ``tags        = ["web", "dev"]``, enabling the tags of **web** and **dev** to be applied to the VM.
+* In your CloudShell, cd into the working directory by running ``cd ~/learn-gcp-terraform`` if you are not still in it.
 * Run ``terraform plan`` from cli, and note the addition of tags dev, web as they will be updated on the existing VM intance as shown below:
 ```
 Terraform will perform the following actions:
