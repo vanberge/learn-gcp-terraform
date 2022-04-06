@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     google = {
-      source = "hashicorp/google"
+      source  = "hashicorp/google"
       version = "4.16.0"
     }
   }
@@ -13,11 +13,11 @@ provider "google" {
 }
 
 #Modules for Network, VMs, and Storage bucket
-module "networks"{
-  source  = "./modules/networks"
+module "networks" {
+  source = "./modules/network"
 }
-module "instances"{
-  source  = "./modules/instances"
+module "instances" {
+  source      = "./modules/instances"
   vpc_network = module.networks.vpc_network #Enable the vpc to be passed to the instances module
 }
 #module "storage"{
