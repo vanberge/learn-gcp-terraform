@@ -14,23 +14,23 @@
 * Click "Open Editor" button to launch the Cloud code editor
 * The file structure is as follows:
 ```
-learn-gcp-terraform
-   |---modules
-      - maint.tf
-      - outputs.tf
-      - variables.tf
-      |---instances
-             - instances.tf
-             - outputs.tf
-             - variables.tf
-      |---network
-             - networks.tf
-             - outputs.tf
-             - variables.tf
-      |---storage
-             - outputs.tf
-             - storage.tf
-             - variables.tf
+|---learn-gcp-terraform
+    - maint.tf
+    - outputs.tf
+    - variables.tf
+    |---modules
+        |---instances
+            - instances.tf
+            - outputs.tf
+            - variables.tf
+        |---network
+            - networks.tf
+            - outputs.tf
+            - variables.tf
+        |---storage
+            - outputs.tf
+            - storage.tf
+            - variables.tf
 ```
 * Note several key difference in the layout from stage-1 introduction, where all settings were located in ```main.tf```
   * The VM instance and Network have each been modularized.  Note that each has its own directory, primary **.tf** file, as well as outputs and variables files.
