@@ -1,10 +1,10 @@
 # learn-gcp-terraform
 
-### Terraform Intro
-Terraform is a tool to automate the building of infrastructure (or, infrastructure-as-code IaC)
-The goal is for this repository to guide through an intro up through more advanced Terraform concepts. 
-To get started on Google Cloud Platform (GCP), you can leverage the CloudShell tool which has Terraform integration built in.
-If you'd like to start locally, you can [install the Terraform CLI](https://learn.hashicorp.com/tutorials/terraform/install-cli)
+### Intro
+Terraform is a tool to automate the building of infrastructure (or, infrastructure-as-code or "IaC")
+The goal is for this repository to serve as a guide, helping learn the use of Terraaform on Google Cloud Platform (GCP) beginning with an intro and building up to more advanced concepts. 
+To get started with Terraform on GCP, you can leverage the built in [CloudShell](https://cloud.google.com/shell) tool which has Terraform and git integration built in.
+If you'd like to start locally, you can [install the Terraform CLI](https://learn.hashicorp.com/tutorials/terraform/install-cli) and leverage the [Google Cloud SDK](https://cloud.google.com/sdk/docs/install).
 
 Terraform leverages HCL syntax configuration files as templates to build repeatable infrasatructure in an automated way.  This reduces the potential for user error while enabling speed, agility, and standardization.
 
@@ -65,7 +65,7 @@ With our configuration seemingly in order, let's create and apply a plan:
       + tags_fingerprint     = (known after apply)
       + zone                 = (known after apply)
     ```
-* The plan looks good to create a VM instance and VPC netowrk.  So, now run the command ``terraform apply``
+* The plan looks good to create a VM instance and VPC network.  So, now run the command ``terraform apply``
   * At the **Enter a value:** prompt, type ``yes`` and hit enter.  
   * After 1-2 minutes, your infrastructure should be created.  Leaving the following output:
   ```
@@ -141,3 +141,7 @@ Let's save this finaly stage-1 plan to a stateful file.
 
 **Congratulations!**  
 To learn more, continue on to the [stage-2 branch](https://github.com/vanberge/learn-gcp-terraform/tree/stage-2) to start leveraging modules, varibles, and more complex configurations!
+
+**Credits**
+* Based on the HashiCorp Learn Intro, [Build Infrastructure - Terraform GCP Example](https://learn.hashicorp.com/tutorials/terraform/google-cloud-platform-build)
+* Inspired by [Infrastructure as Code with Terraform](https://www.cloudskillsboost.google/quests/159), a Google Cloud skills boost quest.
