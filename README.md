@@ -32,6 +32,13 @@ learn-gcp-terraform
              - storage.tf
              - variables.tf
 ```
+* Note several key difference in the layout from stage-1 introduction, where all settings were located in ```main.tf```
+  * The VM instance and Network have each been modularized.  Note that each has its own directory, primary **.tf** file, as well as outputs and variables files.
+  * The main.tf file in the root directory references each module
+  * The instance module will have to reference the network module in order to attach the VM to the network.
+  ** To accomplish this, the ```vpc_network``` variable is defined in main.tf, line 21.
+  ** Additionally, the ```instances/variables.tf``` defines the variable within the module at line 14.
+  ** Finally, the ```instances/instances.tf``` file sets the value to the network module's vpc, at line 11 with ```network = var.vpc_network```
 * Edit each variables.tf file, putting your GCP project id in line 2, replacing ```<project id>```
 * Run ```terraform init``` from the CloudShell terminal
 
