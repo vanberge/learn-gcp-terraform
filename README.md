@@ -1,7 +1,7 @@
 # learn-gcp-terraform
 
 ### Intro
-In this stage, we'll build on the foundational [stage-1](https://github.com/vanberge/learn-gcp-terraform/tree/stage-1) knowlege, which covers an introduction to Terraform on Google Cloud Platform (GCP).  The stage 2 focus will be breaking the Terraform configuration into separe modules (where stage-1 had everything in a single main.tf), as well as the use of variables and outputs.  We'll also create additional infrastructure services, including a Google Kubernetes Engine (GKE) cluster, and Google Cloud Storage bucket.
+In this stage, we'll build on the foundational [stage-1](https://github.com/vanberge/learn-gcp-terraform/tree/stage-1) knowlege, which covers an introduction to Terraform on Google Cloud Platform (GCP).  The stage 2 focus will be breaking the Terraform configuration into separate modules (where stage-1 had everything in a single main.tf), as well as the use of variables and outputs.  We'll also create additional infrastructure services, including a Google Kubernetes Engine (GKE) cluster, and Google Cloud Storage bucket.
 
 The file structure is as follows:
 ```
@@ -37,7 +37,9 @@ The file structure is as follows:
 * If you already completed stage 1, delete that branch locally.
   * ```rm -rf ~/learn-gcp-terraform```
 * Clone the stage 2 branch of the repo:
-  * ```git clone --branch stage-2 https://github.com/vanberge/learn-gcp-terraform.git```
+  ```
+  git clone --branch stage-2 https://github.com/vanberge/learn-gcp-terraform.git
+  ```
 * Change into the directory:
   * ```cd learn-gcp-terraform/```
 * Click "Open Editor" button to launch the Cloud code editor
