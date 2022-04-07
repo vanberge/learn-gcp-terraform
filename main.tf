@@ -27,4 +27,5 @@ module "gke" {
 }
 module "storage" {
   source = "./modules/storage"
+  project_id = var.project_id #Storage resource apparently needs this
 }
