@@ -4,7 +4,7 @@
 In this stage, we'll build on the foundational [stage-1](https://github.com/vanberge/learn-gcp-terraform/tree/stage-1) knowlege, which covers an introduction to Terraform on Google Cloud Platform (GCP).  The stage 2 focus will be breaking the Terraform configuration into separate modules (where stage-1 had everything in a single main.tf), as well as the use of variables and outputs.  We'll also create additional infrastructure services, including a Google Kubernetes Engine (GKE) cluster, and Google Cloud Storage bucket.
 
 The file structure is as follows:
-```
+``
 |---learn-gcp-terraform  #Main working directory, root module
     - main.tf
     - outputs.tf
@@ -26,7 +26,7 @@ The file structure is as follows:
             - outputs.tf
             - storage.tf
             - variables.tf
-```
+``
 
 ## Stage 2.  Working with Terraform modules, variables, and outputs
 
@@ -57,15 +57,15 @@ The file structure is as follows:
      * Finally, the ``instances/instances.tf`` file sets the value to the network module's vpc, at line 11 with ``network = var.vpc_network``
 
 ### Deploy the cloud infrastructure
-* Edit each variables.tf file, putting your GCP project id in line 2, replacing ``<project id>``
-* Validate the configuration:
-  ```
-  terraform validate
-  ```
-
+* Edit the variables.tf in the root folder, putting your GCP project id in line 2, replacing ``<project id>``
 * Initialize the Terraform working environment by running:
   ```
   terraform init
+  ```
+
+* Validate the configuration:
+  ```
+  terraform validate
   ```
 
 * Create the Terraform plan by running:
