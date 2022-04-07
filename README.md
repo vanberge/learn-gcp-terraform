@@ -1,28 +1,19 @@
 # learn-gcp-terraform
 
 ### Intro
-In this stage, we'll build on the foundational [stage-1](https://github.com/vanberge/learn-gcp-terraform/tree/stage-1) knowlege, which covers an introduction to Terraform on Google Cloud Platform (GCP).
+In this stage, we'll build on the foundational [stage-1](https://github.com/vanberge/learn-gcp-terraform/tree/stage-1) knowlege, which covers an introduction to Terraform on Google Cloud Platform (GCP).  The stage 2 focus will be breaking the Terraform configuration into separe modules (where stage-1 had everything in a single main.tf), as well as the use of variables and outputs.  We'll also create additional infrastructure services, including a Google Kubernetes Engine (GKE) cluster, and Google Cloud Storage bucket.
 
-## Stage 2.  Working with modules, variables, and outputs
-
-### Set up the environment
-* Log into the console at https://console.cloud.google.com
-* Creat a project, or select the project you'd like to use
-* Open a CloudShell session
-* If you already completed stage 1, delete that branch locally.
-  * ```rm -rf ~/learn-gcp-terraform```
-* Clone the stage 2 branch of the repo:
-  * ```git clone --branch stage-2 https://github.com/vanberge/learn-gcp-terraform.git```
-* Change into the directory:
-  * ```cd learn-gcp-terraform/```
-* Click "Open Editor" button to launch the Cloud code editor
-* The file structure is as follows:
+The file structure is as follows:
 ```
-|---learn-gcp-terraform
-    - maint.tf
+|---learn-gcp-terraform  #Main working directory, root module
+    - main.tf
     - outputs.tf
     - variables.tf
-    |---modules
+    |---modules  #Module subfolders
+        |---gke  
+            - gke.tf
+            - outputs.tf
+            - variables.tf
         |---instances
             - instances.tf
             - outputs.tf
@@ -36,6 +27,22 @@ In this stage, we'll build on the foundational [stage-1](https://github.com/vanb
             - storage.tf
             - variables.tf
 ```
+
+## Stage 2.  Working with Terraform modules, variables, and outputs
+
+### Set up the environment
+* Log into the console at https://console.cloud.google.com
+* Creat a project, or select the project you'd like to use
+* Open a CloudShell session
+* If you already completed stage 1, delete that branch locally.
+  * ```rm -rf ~/learn-gcp-terraform```
+* Clone the stage 2 branch of the repo:
+  * ```git clone --branch stage-2 https://github.com/vanberge/learn-gcp-terraform.git```
+* Change into the directory:
+  * ```cd learn-gcp-terraform/```
+* Click "Open Editor" button to launch the Cloud code editor
+* The file structure is as follows:
+
 * Note several key difference in the layout from stage-1 introduction, where all settings were located in ```main.tf```
   * The VM instance and Network have each been modularized.  Note that each has its own directory, primary **.tf** file, as well as outputs and variables files.
   * The main.tf file in the root directory references each module
