@@ -85,9 +85,9 @@ terraform plan
       + zone                 = (known after apply)
   ```
 * The plan looks good to create a VM instance and VPC network.  So, now run the command 
-``
+```
 terraform apply
-``
+```
   * At the ``Enter a value:`` prompt, type ``yes`` and hit enter.  
   * After 1-2 minutes, your infrastructure should be created.  Leaving the following output:
   ```
