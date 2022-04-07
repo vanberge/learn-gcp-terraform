@@ -35,7 +35,7 @@ The file structure is as follows:
 * Creat a project, or select the project you'd like to use
 * Open a CloudShell session
 * If you already completed stage 1, delete that branch locally.
-  * ```
+  ```
   rm -rf ~/learn-gcp-terraform
   ```
 * Clone the stage 2 branch of the repo:
