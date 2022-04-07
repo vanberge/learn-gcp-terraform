@@ -83,7 +83,7 @@ terraform plan
       + self_link            = (known after apply)
       + tags_fingerprint     = (known after apply)
       + zone                 = (known after apply)
-    ```
+  ```
 * The plan looks good to create a VM instance and VPC network.  So, now run the command 
 ``
 terraform apply
