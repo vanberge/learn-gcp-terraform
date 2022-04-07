@@ -4,7 +4,7 @@
 In this stage, we'll build on the foundational [stage-1](https://github.com/vanberge/learn-gcp-terraform/tree/stage-1) knowlege, which covers an introduction to Terraform on Google Cloud Platform (GCP).  The stage 2 focus will be breaking the Terraform configuration into separate modules (where stage-1 had everything in a single main.tf), as well as the use of variables and outputs.  We'll also create additional infrastructure services, including a Google Kubernetes Engine (GKE) cluster, and Google Cloud Storage bucket.
 
 The file structure is as follows:
-``
+```
 |---learn-gcp-terraform  #Main working directory, root module
     - main.tf
     - outputs.tf
@@ -26,7 +26,7 @@ The file structure is as follows:
             - outputs.tf
             - storage.tf
             - variables.tf
-``
+```
 
 ## Stage 2.  Working with Terraform modules, variables, and outputs
 
