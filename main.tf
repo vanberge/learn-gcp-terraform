@@ -25,6 +25,6 @@ module "gke" {
   k8s_network        = module.network.k8s_network #Enable the vpc to be passed to the k8s module
   k8s_network_subnet = module.network.k8s_network_subnet
 }
-module "storage"{
-  source  = "./modules/storage"
+module "storage" {
+  source = "./modules/storage"
 }
