@@ -1,6 +1,10 @@
 # learn-gcp-terraform
 
+### Intro
+In this stage, we'll build on the foundational [stage-1](https://github.com/vanberge/learn-gcp-terraform/tree/stage-1) knowlege, which covers an introduction to Terraform on Google Cloud Platform (GCP).
+
 ## Stage 2.  Working with modules, variables, and outputs
+
 ### Set up the environment
 * Log into the console at https://console.cloud.google.com
 * Creat a project, or select the project you'd like to use
@@ -49,8 +53,3 @@
    * Note that similarly to stage-1, the VPC network is created first followed by the Compute instance.  
    * This time, however, the layout and files allow for greater scale and specific configurations for additonal networks or Compute instance VMs
 * After 1-2 minutes, you will see ```Apply complete! Resources: 2 added, 0 changed, 0 destroyed.```
-
-
-
-             
-
