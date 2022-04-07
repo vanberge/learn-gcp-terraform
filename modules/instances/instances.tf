@@ -14,5 +14,5 @@ resource "google_compute_instance" "vm_instance" {
     }
   }
   #Uncomment if you wish to tag your VM 
-  tags        = ["web", "dev"]
+  tags = ["web", "dev"]
 }
