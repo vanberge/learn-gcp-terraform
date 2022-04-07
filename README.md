@@ -21,29 +21,48 @@ Some of the most common Terraform commands used:
 * Create a new project, or select the project you'd like to use
 * Open a CloudShell session by clicking the ``>_`` icon in the upper right menu
 * Clone the repo by running:
-  * ``git clone https://github.com/vanberge/learn-gcp-terraform.git``
+  ```
+  git clone https://github.com/vanberge/learn-gcp-terraform.git
+  ```
 * Change into the directory:
-  * ``cd learn-gcp-terraform/``
+  ```
+  cd learn-gcp-terraform/
+  ```
 * Click "Open Editor" button to launch the Cloud code editor, and break it out into a new tab.
 * On the original tab, select the ``Open terminal`` button so you now have a CloudShell terminal and a visual code editor on separate tabs.
 * On the editor tab, open ``main.tf`` and edit line 10 to paste in your GCP project ID, replacing **<PROJECT_ID>**
 
 ### Initialize Terraform and Create Base Infrastructure
-* From the learn-gcp-terraform directory, run ``terraform init`` 
+* From the ``learn-gcp-terraform directory``, initialize the Terraform environment
+```
+terraform init
+``` 
   * You should see **Terraform has been successfully initialized!**
-* Next, let's check that ``main.tf`` is a valid configuration file.
-  * Run ``terraform validate`` to check the config.
+* Next, let's check that ``main.tf`` is a valid configuration file. 
+  ```
+  terraform validate
+  ```
   * You should see the message **Error: Unsupported attribute**. The error text points you to line 30, underlining an issue.
   * View the ``main.tf`` file in your code editor tab, review line 30.  Fix the typo.
-  * Re run ``terraform validate``.  You should now see **Success! The configuration is valid.**
+  * Re-run the ``terraform validate`` command from above.  You should now see **Success! The configuration is valid.**
+
 * With the configuration valid, let's check the formatting.
-  * Execute the command ``terraform fmt -check -diff`` which will check the formatting of **main.tf** and show you potential changes.
+  * Execute the following command, which will check the formatting of **main.tf** and show you potential changes.
+  ```
+  terraform fmt -check -diff
+  ```
   * Note the alignment of the ``=`` is what will be adjusted.
-  * Apply the formatting changes to main.tf by running ```terraform fmt main.tf```
-  * Look at main.tf in the cloud editor now, and notice the alignment changes made to teh ``=`` signs.
+  * Apply the formatting changes to main.tf by running 
+  ```
+  terraform fmt main.tf
+  ```
+  * Look at ``main.tf`` in the cloud editor now, and notice the alignment changes made to teh ``=`` signs.
 
 With our configuration seemingly in order, let's create and apply a plan:
-* Enter ``terraform plan`` and hit enter.  You may have to click to authorize CloudShell to execute
+* Run the following command and hit enter.  You may have to click to authorize CloudShell to execute
+```
+terraform plan
+```
   * Review the output to take note of what the terraform automation will create. It should look like this: 
   ```
   # google_compute_instance.vm_instance will be created
@@ -65,8 +84,11 @@ With our configuration seemingly in order, let's create and apply a plan:
       + tags_fingerprint     = (known after apply)
       + zone                 = (known after apply)
     ```
-* The plan looks good to create a VM instance and VPC network.  So, now run the command ``terraform apply``
-  * At the **Enter a value:** prompt, type ``yes`` and hit enter.  
+* The plan looks good to create a VM instance and VPC network.  So, now run the command 
+``
+terraform apply
+``
+  * At the ``Enter a value:`` prompt, type ``yes`` and hit enter.  
   * After 1-2 minutes, your infrastructure should be created.  Leaving the following output:
   ```
   google_compute_network.vpc_network: Creating...
@@ -80,16 +102,20 @@ With our configuration seemingly in order, let's create and apply a plan:
   Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
   ```
 * Now that the infrastructure plan has been applied, let's view it in the GCP console:
-  * From the left hand Cloud console hamburger menu, select **Compute Engine**, and then **VM Instances**
-  * Note the VM **terraform-instance** has been created. Click the VM and review the settings.  
-  * The VM is attached to the  **terraform-network** VPC network which was also created by the infrastructure plan.
+  * From the left hand Cloud console hamburger menu, select ``Compute Engine``, and then ``VM Instances``
+  * Note the VM ``terraform-instance`` has been created. Click the VM and review the settings.  
+  * The VM is attached to the ``terraform-network`` VPC network which was also created by the infrastructure plan.
 
 ### Updating Existing Infrastructure with Terraform
 * Now we'll update existing infrastrucutre with a modified plan.
 * Navigate to the code editor tab to make a change to ``main.tf``
 * Uncomment line 36 ``tags        = ["web", "dev"]``, enabling the tags of **web** and **dev** to be applied to the VM.
 * In your CloudShell, cd into the working directory by running ``cd ~/learn-gcp-terraform`` if you are not still in it.
-* Run ``terraform plan`` from cli, and note the addition of tags dev, web as they will be updated on the existing VM intance as shown below:
+* Run the following command to recreate the Terraform plan
+```
+terraform plan 
+``` 
+* Note the addition of tags dev, web as they will be updated on the existing VM intance as shown below:
 ```
 Terraform will perform the following actions:
 
@@ -102,10 +128,13 @@ Terraform will perform the following actions:
           + "web",
         ]
 ```
-* Run ``terraform apply -auto-approve`` to execute the latest version of the config
-  * Note, with the additional command argument, you do not have the the ``Enter a value:``
-  * Note the **Apply complete! Resources: 0 added, 1 changed, 0 destroyed.**
-* Click onto the VM from the Console, scroll down to the **Network tags* section.  Note the dev, web tags are visible on the console
+* Run the following command to execute the latest version of the config
+```
+terraform apply -auto-approve
+```
+  * Note, with the additional command argument, you did not have the the ``Enter a value:``
+  * Note the ``Apply complete! Resources: 0 added, 1 changed, 0 destroyed.``
+* Click onto the VM from the Console, scroll down to the **Network tags** section.  Note the dev, web tags are visible on the console
 * You have updated the infrastructure using Terraform!
 
 ### Replacing Existing Infrastructure with Terraform
@@ -115,7 +144,7 @@ We'll explore one of those changes now.
 * Navigate to the ``main.tf`` file in your code editor tab.
 * find the **image = "debian-cloud/debian-9"** at line 26.  Edit this line to read ``image = "ubuntu-os-cloud/ubuntu-minimal-2004-lts"``
 This will change the base OS image our VM is based from Debian to Ubuntu.  Although similar operating systems, this change is destructive.
-* Run the command ``terraform plan`` from your CloudShell terminal.
+* Re-run the command ``terraform plan`` from your CloudShell terminal.
 * Review the command output by scrolling up.  Note the plan output verbiage and warnings:
 ```
 Terraform will perform the following actions:
@@ -127,14 +156,20 @@ Terraform will perform the following actions:
 * Once completed, change the main.tf line 26 back to read ``image = "debian-cloud/debian-9"``
 
 Let's save this finaly stage-1 plan to a stateful file.
-* Run ``terraform plan -out=mytfplan`` from your CloudShell terminal.
+* Run the following command from your CloudShell terminal to save the Terraform plan
+```
+terraform plan -out=mytfplan
+```
 * The terraform plan command runs as normal. However, if you execute ``ls`` command, you will now see a **mytflplan** file in your working directory
 * To apply this plan, execute ``terraform apply "mytfplan"`` from the CloudShell terminal.
 * You have now deployed your terraform plan from both a working directory, as well as a stateful file.
 
 ### Destroy the Environment
 * Now that you have created a repeatable infrastructure, you can destroy it.
-* From within the ``~/learn-gcp-terraform`` folder, type and run ``terraform destroy`` from your CloudShell terminal
+* From within the ``~/learn-gcp-terraform`` folder, type run the destroy command from your CloudShell terminal
+```
+terraform destroy
+```
 * Note the command output indicating the environment network and VM will be destroyed.
 * At the **Enter a value:** prompt, type ``yes`` and hit enter
 * The Network is destroyed first, followed by the VM instance. 
