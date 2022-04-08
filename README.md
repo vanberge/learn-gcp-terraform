@@ -34,9 +34,9 @@ Some of the most common Terraform commands used:
 
 ### Initialize Terraform and Create Base Infrastructure
 * From the ``learn-gcp-terraform directory``, initialize the Terraform environment
-```
-terraform init
-``` 
+  ```
+  terraform init
+  ``` 
   * You should see **Terraform has been successfully initialized!**
 * Next, let's check that ``main.tf`` is a valid configuration file. 
   ```
@@ -48,21 +48,21 @@ terraform init
 
 * With the configuration valid, let's check the formatting.
   * Execute the following command, which will check the formatting of **main.tf** and show you potential changes.
-  ```
-  terraform fmt -check -diff
-  ```
+    ```
+    terraform fmt -check -diff
+    ```
   * Note the alignment of the ``=`` is what will be adjusted.
   * Apply the formatting changes to main.tf by running 
-  ```
-  terraform fmt main.tf
-  ```
+    ```
+    terraform fmt main.tf
+    ```
   * Look at ``main.tf`` in the cloud editor now, and notice the alignment changes made to teh ``=`` signs.
 
 With our configuration seemingly in order, let's create and apply a plan:
 * Run the following command and hit enter.  You may have to click to authorize CloudShell to execute
-```
-terraform plan
-```
+  ```
+  terraform plan
+  ```
   * Review the output to take note of what the terraform automation will create. It should look like this: 
   ```
   # google_compute_instance.vm_instance will be created
@@ -85,22 +85,22 @@ terraform plan
       + zone                 = (known after apply)
   ```
 * The plan looks good to create a VM instance and VPC network.  So, now run the command 
-```
-terraform apply
-```
+  ```
+  terraform apply
+  ```
   * At the ``Enter a value:`` prompt, type ``yes`` and hit enter.  
   * After 1-2 minutes, your infrastructure should be created.  Leaving the following output:
-  ```
-  google_compute_network.vpc_network: Creating...
-  google_compute_network.vpc_network: Still creating... [10s elapsed]
-  google_compute_network.vpc_network: Still creating... [20s elapsed]
-  google_compute_network.vpc_network: Still creating... [30s elapsed]
-  google_compute_network.vpc_network: Creation complete after 32s 
-  google_compute_instance.vm_instance: Creating...
-  google_compute_instance.vm_instance: Still creating... [10s elapsed]
-  google_compute_instance.vm_instance: Creation complete after 13s
-  Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
-  ```
+    ```
+    google_compute_network.vpc_network: Creating...
+    google_compute_network.vpc_network: Still creating... [10s elapsed]
+    google_compute_network.vpc_network: Still creating... [20s elapsed]
+    google_compute_network.vpc_network: Still creating... [30s elapsed]
+    google_compute_network.vpc_network: Creation complete after 32s 
+    google_compute_instance.vm_instance: Creating...
+    google_compute_instance.vm_instance: Still creating... [10s elapsed]
+    google_compute_instance.vm_instance: Creation complete after 13s
+    Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+    ```
 * Now that the infrastructure plan has been applied, let's view it in the GCP console:
   * From the left hand Cloud console hamburger menu, select ``Compute Engine``, and then ``VM Instances``
   * Note the VM ``terraform-instance`` has been created. Click the VM and review the settings.  
@@ -112,26 +112,26 @@ terraform apply
 * Uncomment line 36 ``tags        = ["web", "dev"]``, enabling the tags of **web** and **dev** to be applied to the VM.
 * In your CloudShell, cd into the working directory by running ``cd ~/learn-gcp-terraform`` if you are not still in it.
 * Run the following command to recreate the Terraform plan
-```
-terraform plan 
-``` 
+  ```
+  terraform plan 
+  ``` 
 * Note the addition of tags dev, web as they will be updated on the existing VM intance as shown below:
-```
-Terraform will perform the following actions:
+  ```
+  Terraform will perform the following actions:
 
-  # google_compute_instance.vm_instance will be updated in-place
-  ~ resource "google_compute_instance" "vm_instance" {
-        id                   = "projects/../../terraform-instance"
-        name                 = "terraform-instance"
-      ~ tags                 = [
-          + "dev",
-          + "web",
-        ]
-```
+    # google_compute_instance.vm_instance will be updated in-place
+    ~ resource "google_compute_instance" "vm_instance" {
+          id                   = "projects/../../terraform-instance"
+          name                 = "terraform-instance"
+        ~ tags                 = [
+            + "dev",
+            + "web",
+          ]
+  ```
 * Run the following command to execute the latest version of the config
-```
-terraform apply -auto-approve
-```
+  ```
+  terraform apply -auto-approve
+  ```
   * Note, with the additional command argument, you did not have the the ``Enter a value:``
   * Note the ``Apply complete! Resources: 0 added, 1 changed, 0 destroyed.``
 * Click onto the VM from the Console, scroll down to the **Network tags** section.  Note the dev, web tags are visible on the console
@@ -146,20 +146,20 @@ We'll explore one of those changes now.
 This will change the base OS image our VM is based from Debian to Ubuntu.  Although similar operating systems, this change is destructive.
 * Re-run the command ``terraform plan`` from your CloudShell terminal.
 * Review the command output by scrolling up.  Note the plan output verbiage and warnings:
-```
-Terraform will perform the following actions:
+  ```
+  Terraform will perform the following actions:
 
-  # google_compute_instance.vm_instance must be replaced
-```
+    # google_compute_instance.vm_instance must be replaced
+  ```
 * Run ``terraform apply`` and then enter ``yes`` when prompted.  
 * The terraform plan will apply, destroying and recreating the ``terraform-instance`` virtual machine.
 * Once completed, change the main.tf line 26 back to read ``image = "debian-cloud/debian-9"``
 
 Let's save this finaly stage-1 plan to a stateful file.
 * Run the following command from your CloudShell terminal to save the Terraform plan
-```
-terraform plan -out=mytfplan
-```
+  ```
+  terraform plan -out=mytfplan
+  ```
 * The terraform plan command runs as normal. However, if you execute ``ls`` command, you will now see a **mytflplan** file in your working directory
 * To apply this plan, execute ``terraform apply "mytfplan"`` from the CloudShell terminal.
 * You have now deployed your terraform plan from both a working directory, as well as a stateful file.
@@ -167,12 +167,12 @@ terraform plan -out=mytfplan
 ### Destroy the Environment
 * Now that you have created a repeatable infrastructure, you can destroy it.
 * From within the ``~/learn-gcp-terraform`` folder, type run the destroy command from your CloudShell terminal
-```
-terraform destroy
-```
+  ```
+  terraform destroy
+  ```
 * Note the command output indicating the environment network and VM will be destroyed.
 * At the **Enter a value:** prompt, type ``yes`` and hit enter
-* The Network is destroyed first, followed by the VM instance. 
+* The compute VM is destroyed first, followed by network. 
 
 **Congratulations!**  
 To learn more, continue on to the [stage-2 branch](https://github.com/vanberge/learn-gcp-terraform/tree/stage-2) to start leveraging modules, varibles, and more complex configurations!
