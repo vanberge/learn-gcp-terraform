@@ -4,6 +4,10 @@ terraform {
       source  = "hashicorp/google"
       version = "4.16.0"
     }
+    random = {
+      source  = "hashicorp/random" #let's use random things for scale
+      version = "3.1.2"
+    }
   }
 }
 provider "google" {
@@ -22,7 +26,7 @@ module "instances" {
 }
 module "gke" {
   source             = "./modules/gke"
-  k8s_network        = module.network.k8s_network #Enable the vpc to be passed to the k8s module
+  k8s_network        = module.network.k8s_network #Enable the vpc and subnet to be passed to the k8s module
   k8s_network_subnet = module.network.k8s_network_subnet
 }
 module "storage" {

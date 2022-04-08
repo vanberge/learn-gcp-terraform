@@ -9,3 +9,7 @@ variable "region" {
 variable "zone" {
   default = "us-central1-c"
 }
+
+variable "base_name" {
+  default = "basename"
+}
