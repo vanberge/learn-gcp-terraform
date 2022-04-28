@@ -63,7 +63,7 @@ With our configuration seemingly in order, let's create and apply a plan:
   ```
   terraform plan
   ```
-  * Review the output to take note of what the terraform automation will create. It should look like this: 
+* Review the output to take note of what the terraform automation will create. It should look like this: 
   ```
   # google_compute_instance.vm_instance will be created
   + resource "google_compute_instance" "vm_instance" {
