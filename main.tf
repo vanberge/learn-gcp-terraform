@@ -16,7 +16,7 @@ provider "google" {
   zone    = var.zone
 }
 
-#Modules for Network, VMs, and Storage bucket
+#Start with modules for Network and VMs
 module "network" {
   source = "./modules/network"
 }
@@ -24,12 +24,14 @@ module "instances" {
   source      = "./modules/instances"
   vpc_network = module.network.vpc_network #Enable the vpc to be passed to the instances module
 }
-module "gke" {
-  source             = "./modules/gke"
-  k8s_network        = module.network.k8s_network #Enable the vpc and subnet to be passed to the k8s module
-  k8s_network_subnet = module.network.k8s_network_subnet
-}
-module "storage" {
-  source = "./modules/storage"
-  project_id = var.project_id #Storage resource apparently needs this
-}
+
+#Add Modules for GKE and storage
+#module "gke" {
+#  source             = "./modules/gke"
+#  k8s_network        = module.network.k8s_network #Enable the vpc and subnet to be passed to the k8s module
+#  k8s_network_subnet = module.network.k8s_network_subnet
+#}
+#module "storage" {
+#  source     = "./modules/storage"
+#  project_id = var.project_id #Pass project id into the storage module
+#}
