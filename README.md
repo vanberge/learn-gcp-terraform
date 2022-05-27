@@ -139,8 +139,7 @@ With our configuration seemingly in order, let's create and apply a plan:
 
 ### Replacing Existing Infrastructure with Terraform
 In the previous section, the changes to the infrastructure were able to edit the existing VM instance. However, some changes will require replacing the infrastructure.
-We'll explore one of those changes now.
-* Now we'll update existing infrastrucutre with a modified p
+We'll explore one of those changes now by updating the OS image of our GCE virtual machine
 * Navigate to the ``main.tf`` file in your code editor tab.
 * find the **image = "debian-cloud/debian-9"** at line 26.  Edit this line to read ``image = "ubuntu-os-cloud/ubuntu-minimal-2004-lts"``
 This will change the base OS image our VM is based from Debian to Ubuntu.  Although similar operating systems, this change is destructive.
