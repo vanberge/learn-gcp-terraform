@@ -1,34 +1,10 @@
 # learn-gcp-terraform
 
 ### Intro
-In this stage, we'll build on the foundational [stage-1](https://github.com/vanberge/learn-gcp-terraform/tree/stage-1) knowlege, which covers an introduction to Terraform on Google Cloud Platform (GCP).  The stage 2 focus will be breaking the Terraform configuration into separate modules (where stage-1 had everything in a single main.tf), as well as the use of variables and outputs.  We'll also create additional infrastructure services, including a Google Kubernetes Engine (GKE) cluster, and Google Cloud Storage bucket.
+In this stage, we'll continue building from our modularized [stage-2](https://github.com/vanberge/learn-gcp-terraform/tree/stage-1) Terraform build, but focus on automating infrastructure build and updates with Github Actions.
 
-The file structure is as follows:
-```
-|---learn-gcp-terraform  #Main working directory, root module
-    - main.tf
-    - outputs.tf
-    - variables.tf
-    |---modules  #Module subfolders
-        |---gke  
-            - gke.tf
-            - outputs.tf
-            - variables.tf
-        |---instances
-            - instances.tf
-            - outputs.tf
-            - variables.tf
-        |---network
-            - networks.tf
-            - outputs.tf
-            - variables.tf
-        |---storage
-            - outputs.tf
-            - storage.tf
-            - variables.tf
-```
-
-## Stage 2.  Working with Terraform modules, variables, and outputs
+## Stage 3.  Working with Github Actions, Terraform Cloud, and automating builds.
+* Create a Terraform Cloud free account by visiting: https://cloud.hashicorp.com/products/terraform
 
 ### Set up the environment
 * Log into the console at https://console.cloud.google.com
