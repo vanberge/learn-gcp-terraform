@@ -11,7 +11,7 @@ variable "zone" {
 }
 
 variable "base_name" {
-  default = "basename"
+  type = string
 }
 
 #call the variable to be passed in by network module

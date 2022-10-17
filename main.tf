@@ -9,7 +9,15 @@ terraform {
       version = "3.1.2"
     }
   }
+  cloud {
+    organization = "evb-sandbox"
+
+    workspaces {
+      name = "evb-gcp-terraform"
+    }
+  }
 }
+
 provider "google" {
   project = var.project_id
   region  = var.region
@@ -23,15 +31,16 @@ module "network" {
 module "instances" {
   source      = "./modules/instances"
   vpc_network = module.network.vpc_network #Enable the vpc to be passed to the instances module
+  base_name   = var.base_name
 }
 
 #Add Modules for GKE and storage
-#module "gke" {
-#  source             = "./modules/gke"
-#  k8s_network        = module.network.k8s_network #Enable the vpc and subnet to be passed to the k8s module
-#  k8s_network_subnet = module.network.k8s_network_subnet
-#}
-#module "storage" {
-#  source     = "./modules/storage"
-#  project_id = var.project_id #Pass project id into the storage module
-#}
+module "gke" {
+  source             = "./modules/gke"
+  k8s_network        = module.network.k8s_network #Enable the vpc and subnet to be passed to the k8s module
+  k8s_network_subnet = module.network.k8s_network_subnet
+}
+module "storage" {
+  source     = "./modules/storage"
+  project_id = var.project_id #Pass project id into the storage module
+}
