@@ -34,7 +34,7 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        if: github.event_name == 'pull_request' 
+        # if: github.event_name == 'pull_request' #removing this if so that it will run even on commit
         run: terraform plan -input=false -compact-warnings
         continue-on-error: true
 
