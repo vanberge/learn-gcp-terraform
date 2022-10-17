@@ -35,11 +35,11 @@ jobs:
       - name: Terraform Plan
         id: plan
         # if: github.event_name == 'pull_request' #removing this if so that it will run even on commit
-        run: terraform plan -input=false -compact-warnings
+        run: terraform plan -input=false 
         continue-on-error: true
 
       - uses: actions/github-script@v6
-        if: github.event_name == 'pull_request'
+        # if: github.event_name == 'pull_request' #removing this if so that it will run even on commit
         env:
           PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
         with:
