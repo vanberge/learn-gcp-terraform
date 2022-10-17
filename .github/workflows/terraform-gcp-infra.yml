@@ -39,11 +39,11 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan #-no-color try it in color!
+        run: terraform plan -compact-warnings -input=false #-no-color try it in color!
         continue-on-error: false
 
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve
+        if: github.event_name == 'push'
+        run: terraform apply -compact-warnings -auto-approve
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
