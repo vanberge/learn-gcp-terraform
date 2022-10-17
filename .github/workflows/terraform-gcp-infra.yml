@@ -1,4 +1,4 @@
-name: "Terraform"
+name: "Terraform Pipeline"
 
 on:
   push:
@@ -8,14 +8,19 @@ on:
 
 jobs:
   terraform:
-    name: "Terraform"
+    name: "Build GCP Base infra build"
     runs-on: ubuntu-latest
     steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v2
         with:
           # terraform_version: 0.13.0:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
@@ -35,10 +40,10 @@ jobs:
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'pull_request'
-        run: terraform plan -no-color -input=false
+        run: terraform plan #-no-color try it in color!
         continue-on-error: true
 
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@0.9.0
         if: github.event_name == 'pull_request'
         env:
           PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
@@ -58,14 +63,7 @@ jobs:
 
             </details>
 
-            *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
-
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: output
-            })
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
 
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
@@ -73,4 +71,6 @@ jobs:
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve -input=false
+        run: terraform apply -auto-approve
+
+      - run: echo "🍏 This job's status is ${{ job.status }}."
