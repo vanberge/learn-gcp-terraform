@@ -1,4 +1,4 @@
-name: "Terraform GCP Pipeline
+name: "gcp-terraform-pipeline"
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   terraform:
-    name: "build-gcp-infrastructure"
+    name: "build-gcp-infra"
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
