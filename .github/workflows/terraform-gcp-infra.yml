@@ -1,4 +1,4 @@
-name: "gcp-terraform-pipeline"
+name: "Terraform"
 
 on:
   push:
@@ -8,12 +8,9 @@ on:
 
 jobs:
   terraform:
-    name: "build-gcp-infra"
+    name: "Terraform"
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -33,16 +30,16 @@ jobs:
       
       - name: Terraform Validate
         id: validate
-        run: terraform validate
+        run: terraform validate -no-color
 
       - name: Terraform Plan
         id: plan
-        if: github.event_name == 'push'
-        run: terraform plan -input=false
+        if: github.event_name == 'pull_request'
+        run: terraform plan -no-color -input=false
         continue-on-error: true
 
       - uses: actions/github-script@v6
-        if: github.event_name == 'push'
+        if: github.event_name == 'pull_request'
         env:
           PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
         with:
