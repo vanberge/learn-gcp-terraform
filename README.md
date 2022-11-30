@@ -81,3 +81,6 @@ The file structure is as follows:
    * Note that similarly to stage-1, the VPC network is created first followed by the Compute instance.  
    * This time, however, the layout and files allow for greater scale and specific configurations for additonal networks or Compute instance VMs
 * After 1-2 minutes, you will see ```Apply complete! Resources: 2 added, 0 changed, 0 destroyed.```
+
+**Congratulations!**  
+To learn more, continue on to the [stage-3 branch](https://github.com/vanberge/learn-gcp-terraform/tree/stage-3) to set up CI/CD with Github actions and Terraform Cloud!
