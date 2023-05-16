@@ -20,7 +20,7 @@ In this stage, we'll continue building from our modularized [stage-2](https://gi
    * Create your workspace, and then create a couple of necessary variables
    * Create GOOGLE_CREDENTIALS as an environment variable, mark as sensistive, and paste contents of json key file you created using the ```sed``` command.
    * Create a terraform (not envrionment) variable value called ```project_id```, and use the ID of the GCP project that you want terraform to deploy into as the value, including quotes.  IE ```"gcp-terraform"```.
-   * On the (Tokens page)[https://app.terraform.io/app/settings/tokens], create a new API Token named ```github-actions-token```.  Copy and save the token which will be used in the next section
+   * On the [Tokens page](https://app.terraform.io/app/settings/tokens), create a new API Token named ```github-actions-token```.  Copy and save the token which will be used in the next section
 
 * Visit github.com and sign in
    * Fork this repository as your own
@@ -29,6 +29,7 @@ In this stage, we'll continue building from our modularized [stage-2](https://gi
    * Clone this repository to your local workstation or Google Cloudshell
    * Using the text editor of your choice, set the appropriate variables across the variables.tf
       * Or, you can also set them on the "Variables" section of back at [Terraform Cloud](https://app.terraform.io/app) as shown below.  Note the use of ```TF_VAR_``` in the key names, which enables terraform to reference those variables in the workspace build environment.
+      
       ![](support-files/terraform-cloud-vars.png?raw=true)
 
 * Lastly, Review the ```terraform-gcp-infra.yaml``` file in the .github/workflows directory
