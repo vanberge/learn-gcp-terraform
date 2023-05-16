@@ -27,5 +27,6 @@ In this stage, we'll continue building from our modularized [stage-2](https://gi
    * In the forked version of the repository, visit the ```Settings``` tab and select ```Secrets```
    * Create a new secret called ```TF_API_TOKEN```, paste the value from the Terraform cloud ```github-actions-token``` step in the previous section.
    * Clone this repository to your local workstation or Google Cloudshell
-   * Using the text editor of your choice, set the appropriate variables
+   * Using the text editor of your choice, set the appropriate variables across the variables.tf files
+      * Or, you can also set them on the "Variables" section of terraform cloud.
    
