@@ -27,7 +27,17 @@ In this stage, we'll continue building from our modularized [stage-2](https://gi
    * In the forked version of the repository, visit the ```Settings``` tab and select ```Secrets```
    * Create a new secret called ```TF_API_TOKEN```, paste the value from the Terraform cloud ```github-actions-token``` step in the previous section.
    * Clone this repository to your local workstation or Google Cloudshell
-   * Using the text editor of your choice, set the appropriate variables across the variables.tf files
-      * Or, you can also set them on the "Variables" section of terraform cloud as shown below.  Note the use of ```TF_VAR_``` in the key names, which enables terraform to reference those variables in the workspace build environment.
+   * Using the text editor of your choice, set the appropriate variables across the variables.tf
+      * Or, you can also set them on the "Variables" section of back at [Terraform Cloud](https://app.terraform.io/app) as shown below.  Note the use of ```TF_VAR_``` in the key names, which enables terraform to reference those variables in the workspace build environment.
       ![](support-files/terraform-cloud-vars.png?raw=true)
+
+* Lastly, Review the ```terraform-gcp-infra.yaml``` file in the .github/workflows directory
+   * Note the branch naming; which commits and merges will kick off the run of this pipeline
+   * This job runner will instruct Terraform cloud build agents to execute the following steps:
+      * git pull the repository
+      * Run a ```terraform fmt``` to check formatting and syntax
+      * Initialize via ```terraform init```
+      * Run a plan using ```terraform plan```
+      * Apply the changes via ```terraform apply```
+      * Output the job status at the end
    
