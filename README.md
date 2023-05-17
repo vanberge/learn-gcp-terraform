@@ -24,6 +24,7 @@ In this stage, we'll continue building from our modularized [stage-2](https://gi
 
 * Visit github.com and sign in
    * Fork this repository as your own
+   * In the ```main.tf``` file, update the Terraform Cloud workspace and organization settings on line 13 and 16 respectively
    * In the forked version of the repository, visit the ```Settings``` tab and select ```Secrets```
    * Create a new secret called ```TF_API_TOKEN```, paste the value from the Terraform cloud ```github-actions-token``` step in the previous section.
    * Clone this repository to your local workstation or Google Cloudshell
