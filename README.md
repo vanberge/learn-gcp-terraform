@@ -56,7 +56,7 @@ Some of the most common Terraform commands used:
     ```
     terraform fmt main.tf
     ```
-  * Look at ``main.tf`` in the cloud editor now, and notice the alignment changes made to teh ``=`` signs.
+  * Look at ``main.tf`` in the cloud editor now, and notice the alignment changes made to the ``=`` signs.
 
 With our configuration seemingly in order, let's create and apply a plan:
 * Run the following command and hit enter.  You may have to click to authorize CloudShell to execute
