@@ -13,7 +13,8 @@ In this stage, we'll continue building from our modularized [stage-2](https://gi
    * Create a key for this service account in JSON format; which will download to your local machine.
    * Remove newline characters from the JSON file by running ```sed -z 's/\n/,/g' <keyfilename>.json```
 
-* Next, configure and set up Terraform Cloud
+* Next, configure and set up Terraform Cloud.
+   * Terraform cloud has a free tier that can be used to manage your Infrastructure as code deployments!
    * If you haven't already (and, you're not using GCP's Cloudshell), [install the Terraform CLI](https://learn.hashicorp.com/tutorials/terraform/install-cli).
    * Next, Set up [Terraform Cloud](https://app.terraform.io/app) following [this guide](https://learn.hashicorp.com/tutorials/terraform/github-actions?in=terraform/automation#set-up-terraform-cloud).
      Make sure you choose "API Driven workflow"
@@ -22,24 +23,31 @@ In this stage, we'll continue building from our modularized [stage-2](https://gi
    * Create a terraform (not envrionment) variable value called ```project_id```, and use the ID of the GCP project that you want terraform to deploy into as the value, including quotes.  IE ```"gcp-terraform"```.
    * On the [Tokens page](https://app.terraform.io/app/settings/tokens), create a new API Token named ```github-actions-token```.  Copy and save the token which will be used in the next section
 
-* Visit github.com and sign in
+* Now, we have to link the Github repo to the Terraform Cloud instance we created in the previous step.
+   * Visit github.com and sign in
    * Fork this repository as your own
    * In the ```main.tf``` file, update the Terraform Cloud workspace and organization settings on line 13 and 16 respectively
    * In the forked version of the repository, visit the ```Settings``` tab and select ```Secrets```
    * Create a new secret called ```TF_API_TOKEN```, paste the value from the Terraform cloud ```github-actions-token``` step in the previous section.
-   * Clone this repository to your local workstation or Google Cloudshell
-   * Using the text editor of your choice, set the appropriate variables across the variables.tf
-      * Or, you can also set them on the "Variables" section of back at [Terraform Cloud](https://app.terraform.io/app) as shown below.  Note the use of ```TF_VAR_``` in the key names, which enables terraform to reference those variables in the workspace build environment.
+   * Clone the forked verision of the repository to your local dev environment with Visual Studio or similar, or preferably leverage Google Cloudshell and Cloud editor
+   * Using the text editor of your choice, set the appropriate variables across the `variables.tf`
+      * Or, you can also set them on the "Variables" section of back at [Terraform Cloud](https://app.terraform.io/app) as shown below.  Note the use of ```TF_VAR_``` in the key names, which enables terraform to reference those variables in the workspace build environment. If you notice the variable names not being referenced in your builds, this is likely the culprit
       
       ![](support-files/terraform-cloud-vars.png?raw=true)
 
 * Lastly, Review the ```terraform-gcp-infra.yaml``` file in the .github/workflows directory
    * Note the branch naming; which commits and merges will kick off the run of this pipeline
-   * This job runner will instruct Terraform cloud build agents to execute the following steps:
+   * This job runner will instruct Terraform Cloud build agents to execute the following steps:
       * git pull the repository
       * Run a ```terraform fmt``` to check formatting and syntax
       * Initialize via ```terraform init```
       * Run a plan using ```terraform plan```
       * Apply the changes via ```terraform apply```
       * Output the job status at the end
+
+* Now you're ready to test your run!
+      * Commit the changes you've made in your local copy to your forked repo.
+      * This can be done via command line: ```git commit -m "commit message"```
+
+* That's a wrap!  You've now built some infrastructure using Terraform, worked with Terraform Modules for increased automation, and finally fully automated Infrastructure as Code with Github Actions and Terraform Cloud!
    

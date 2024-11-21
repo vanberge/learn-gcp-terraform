@@ -10,10 +10,10 @@ terraform {
     }
   }
   cloud {
-    organization = "evb-sandbox" #Update this field
+    organization = "evb-sandbox" #Update this field !
 
     workspaces {
-      name = "evb-gcp-terraform" #Update this field 
+      name = "evb-gcp-terraform" #Update this field ! 
     }
   }
 }
