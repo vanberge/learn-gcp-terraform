@@ -57,5 +57,4 @@ In this stage, we'll continue building from our modularized [stage-2](https://gi
       * You should be able to view the run and see the components created by looking at your Terraform Cloud instance
 
       ![](support-files/terraform-run.png?raw=true)
-
    
