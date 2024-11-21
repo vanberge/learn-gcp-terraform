@@ -48,6 +48,14 @@ In this stage, we'll continue building from our modularized [stage-2](https://gi
 * Now you're ready to test your run!
       * Commit the changes you've made in your local copy to your forked repo.
       * This can be done via command line: ```git commit -m "commit message"```
+      * Once you've committed the change, it should kick off the pipeline.  You can monitor by clicking on ```Actions``` tab, or https://github.com/vanberge/<your-forked-repo-name>/actions
+
+      ![](support-files/github-actions.png?raw=true)
+
 
 * That's a wrap!  You've now built some infrastructure using Terraform, worked with Terraform Modules for increased automation, and finally fully automated Infrastructure as Code with Github Actions and Terraform Cloud!
+      * You should be able to view the run and see the components created by looking at your Terraform Cloud instance
+
+      ![](support-files/terraform-run.png?raw=true)
+
    
