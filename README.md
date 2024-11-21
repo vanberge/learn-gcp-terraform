@@ -58,3 +58,5 @@ In this stage, we'll continue building from our modularized [stage-2](https://gi
 
       ![](support-files/terraform-run.png?raw=true)
    
+
+![](support-files/terraform-run.png?raw=true)
