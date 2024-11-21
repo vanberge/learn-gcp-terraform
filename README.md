@@ -33,7 +33,7 @@ In this stage, we'll continue building from our modularized [stage-2](https://gi
    * Using the text editor of your choice, set the appropriate variables across the `variables.tf`
       * Or, you can also set them on the "Variables" section of back at [Terraform Cloud](https://app.terraform.io/app) as shown below.  Note the use of ```TF_VAR_``` in the key names, which enables terraform to reference those variables in the workspace build environment. If you notice the variable names not being referenced in your builds, this is likely the culprit
       
-      ![](support-files/terraform-cloud-vars.png?raw=true)
+![](support-files/terraform-cloud-vars.png?raw=true)
 
 * Lastly, Review the ```terraform-gcp-infra.yaml``` file in the .github/workflows directory
    * Note the branch naming; which commits and merges will kick off the run of this pipeline
@@ -50,13 +50,11 @@ In this stage, we'll continue building from our modularized [stage-2](https://gi
       * This can be done via command line: ```git commit -m "commit message"```
       * Once you've committed the change, it should kick off the pipeline.  You can monitor by clicking on ```Actions``` tab, or https://github.com/vanberge/<your-forked-repo-name>/actions
 
-      ![](support-files/github-actions.png?raw=true)
+![](support-files/github-actions.png?raw=true)
 
 
 * That's a wrap!  You've now built some infrastructure using Terraform, worked with Terraform Modules for increased automation, and finally fully automated Infrastructure as Code with Github Actions and Terraform Cloud!
       * You should be able to view the run and see the components created by looking at your Terraform Cloud instance
-
-      ![](support-files/terraform-run.png?raw=true)
-   
+  
 
 ![](support-files/terraform-run.png?raw=true)
